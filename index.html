@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="An interactive static data-journalism website about housing affordability in Toronto from 2000 to 2026." />
+  <title>Housing Affordability in Toronto</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header id="top" class="hero">
+    <nav class="top-nav" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Toronto affordability atlas home">
+        <span class="brand-mark">TO</span>
+        <span>Affordability Atlas</span>
+      </a>
+      <div class="nav-links">
+        <a href="#justice">Justice</a>
+        <a href="#calculator">Calculator</a>
+        <a href="#chart">Chart</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#neighbourhoods">Map</a>
+        <a href="#references">References</a>
+      </div>
+    </nav>
+
+    <!-- Hero skyline is built with CSS so the site has no image dependency. -->
+    <section class="hero-grid" aria-labelledby="hero-title">
+      <div class="hero-copy" data-reveal>
+        <p class="kicker">Interactive data story | Toronto, 2000-2026</p>
+        <h1 id="hero-title">Who gets to stay in Toronto?</h1>
+        <p class="hero-lead">
+          Housing affordability is not only a market statistic. It decides who can
+          live near school, work, family, health care, transit, and community.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#calculator">Test affordability</a>
+          <a class="button secondary" href="#justice">Read the argument</a>
+        </div>
+      </div>
+
+      <figure class="skyline-scene" aria-label="Stylized Toronto skyline with the CN Tower, apartments, transit, and Lake Ontario.">
+        <div class="sun-disc" aria-hidden="true"></div>
+        <div class="cloud cloud-one" aria-hidden="true"></div>
+        <div class="cloud cloud-two" aria-hidden="true"></div>
+        <div class="building block-a" aria-hidden="true"></div>
+        <div class="building block-b" aria-hidden="true"></div>
+        <div class="building block-c" aria-hidden="true"></div>
+        <div class="building block-d" aria-hidden="true"></div>
+        <div class="cn-tower" aria-hidden="true">
+          <span class="needle"></span>
+          <span class="deck"></span>
+          <span class="shaft"></span>
+        </div>
+        <div class="condo-grid" aria-hidden="true"></div>
+        <div class="streetcar" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="lake" aria-hidden="true"></div>
+      </figure>
+    </section>
+
+    <div class="hero-stats" aria-label="Key Toronto housing indicators">
+      <article data-reveal>
+        <span class="stat-value">$1,426</span>
+        <span class="stat-label">2026 City affordable rent limit for a one-bedroom unit</span>
+      </article>
+      <article data-reveal>
+        <span class="stat-value">3.0%</span>
+        <span class="stat-label">Toronto purpose-built apartment vacancy rate reported by CMHC for 2025</span>
+      </article>
+      <article data-reveal>
+        <span class="stat-value">48%</span>
+        <span class="stat-label">Share of Toronto households that were renters in 2021</span>
+      </article>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="justice" class="section argument-section">
+      <div class="section-heading" data-reveal>
+        <p class="kicker">Social justice argument</p>
+        <h2>Affordability is a rights issue because housing shapes life chances.</h2>
+      </div>
+      <div class="argument-grid">
+        <article class="argument-card" data-reveal>
+          <span class="card-number">01</span>
+          <h3>Income decides geography</h3>
+          <p>
+            When rent absorbs more than 30% of income, households lose choice.
+            Schools, jobs, child care, medical care, and support networks become
+            harder to reach.
+          </p>
+        </article>
+        <article class="argument-card" data-reveal>
+          <span class="card-number">02</span>
+          <h3>Renters carry more risk</h3>
+          <p>
+            Toronto's Housing Data Book says almost a third of households face
+            affordability challenges, and renters are more likely to be affected
+            than owner households.
+          </p>
+        </article>
+        <article class="argument-card" data-reveal>
+          <span class="card-number">03</span>
+          <h3>Inequality compounds</h3>
+          <p>
+            City reporting identifies low-income households, renters, Black
+            residents, Indigenous residents, and other racialized groups as
+            disproportionately harmed by severe housing unaffordability.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="calculator" class="section calculator-section">
+      <div class="section-heading compact" data-reveal>
+        <p class="kicker">Affordability calculator</p>
+        <h2>Put the 30% rule next to a real monthly rent.</h2>
+      </div>
+
+      <div class="calculator-layout">
+        <form class="calculator-form" aria-label="Housing affordability calculator" data-reveal>
+          <div class="field-group">
+            <label for="incomeRange">
+              <span>Annual household income before tax</span>
+              <output id="incomeLabel" for="incomeRange incomeInput">$68,000</output>
+            </label>
+            <input id="incomeRange" type="range" min="15000" max="250000" step="1000" value="68000" />
+            <input id="incomeInput" type="number" min="15000" max="250000" step="1000" value="68000" aria-label="Annual household income before tax" />
+          </div>
+
+          <div class="field-group">
+            <label for="rentRange">
+              <span>Monthly shelter cost</span>
+              <output id="rentLabel" for="rentRange rentInput">$2,055</output>
+            </label>
+            <input id="rentRange" type="range" min="500" max="5500" step="25" value="2055" />
+            <input id="rentInput" type="number" min="500" max="5500" step="25" value="2055" aria-label="Monthly shelter cost" />
+          </div>
+
+          <div class="inline-fields">
+            <label class="select-label" for="unitType">
+              <span>City benchmark</span>
+              <select id="unitType">
+                <option value="studio">Studio</option>
+                <option value="oneBed" selected>1-bedroom</option>
+                <option value="twoBed">2-bedroom</option>
+                <option value="threeBed">3-bedroom</option>
+              </select>
+            </label>
+            <button class="button small" type="button" id="useBenchmark">Use City benchmark</button>
+          </div>
+        </form>
+
+        <aside class="calculator-output" aria-live="polite" data-reveal>
+          <div class="ratio-ring" id="ratioRing">
+            <span id="ratioValue">36%</span>
+            <small>of income</small>
+          </div>
+          <div>
+            <p class="status-pill" id="statusPill">Stretched</p>
+            <h3 id="resultTitle">This rent is above the common affordability threshold.</h3>
+            <dl class="result-list">
+              <div>
+                <dt>Affordable monthly cost</dt>
+                <dd id="affordableMonthly">$1,700</dd>
+              </div>
+              <div>
+                <dt>Monthly gap</dt>
+                <dd id="monthlyGap">$355 over</dd>
+              </div>
+              <div>
+                <dt>Income needed at 30%</dt>
+                <dd id="incomeNeeded">$82,200</dd>
+              </div>
+              <div>
+                <dt>Selected City limit</dt>
+                <dd id="benchmarkValue">$1,426</dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="chart" class="section chart-section">
+      <div class="section-heading" data-reveal>
+        <p class="kicker">Housing affordability chart</p>
+        <h2>Toronto's 2026 affordable rent limits still require high incomes.</h2>
+      </div>
+
+      <div class="chart-panel" data-reveal>
+        <div class="chart-topline">
+          <div>
+            <h3>City affordable rent limits by unit type</h3>
+            <p>Based on the City of Toronto's 2026 affordable rental housing thresholds.</p>
+          </div>
+          <div class="chart-tabs" role="group" aria-label="Chart view">
+            <button type="button" class="tab-button active" data-chart-mode="rent" aria-pressed="true">Monthly rent</button>
+            <button type="button" class="tab-button" data-chart-mode="income" aria-pressed="false">Income needed</button>
+          </div>
+        </div>
+
+        <!-- JavaScript replaces this placeholder with an accessible bar chart. -->
+        <div id="affordabilityChart" class="interactive-chart" role="img" aria-label="Bar chart of 2026 Toronto affordable rent limits and income needed"></div>
+
+        <table class="data-table">
+          <caption>2026 affordable rent limits and income needed at 30% of gross income</caption>
+          <thead>
+            <tr>
+              <th scope="col">Unit type</th>
+              <th scope="col">Affordable rent limit</th>
+              <th scope="col">Income needed at 30%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Studio</td><td>$1,127</td><td>$45,080</td></tr>
+            <tr><td>1-bedroom</td><td>$1,426</td><td>$57,040</td></tr>
+            <tr><td>2-bedroom</td><td>$2,055</td><td>$82,200</td></tr>
+            <tr><td>3-bedroom</td><td>$2,351</td><td>$94,040</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="timeline" class="section timeline-section">
+      <div class="section-heading" data-reveal>
+        <p class="kicker">Timeline</p>
+        <h2>From 2000 to 2026, affordability became a defining Toronto question.</h2>
+      </div>
+
+      <div class="timeline-shell" data-reveal>
+        <div class="timeline-rail" role="list" aria-label="Housing affordability timeline milestones">
+          <button type="button" class="timeline-dot active" data-year="2000" role="listitem">2000</button>
+          <button type="button" class="timeline-dot" data-year="2010" role="listitem">2010</button>
+          <button type="button" class="timeline-dot" data-year="2016" role="listitem">2016</button>
+          <button type="button" class="timeline-dot" data-year="2018" role="listitem">2018</button>
+          <button type="button" class="timeline-dot" data-year="2019" role="listitem">2019</button>
+          <button type="button" class="timeline-dot" data-year="2021" role="listitem">2021</button>
+          <button type="button" class="timeline-dot" data-year="2023" role="listitem">2023</button>
+          <button type="button" class="timeline-dot" data-year="2025" role="listitem">2025</button>
+          <button type="button" class="timeline-dot" data-year="2026" role="listitem">2026</button>
+        </div>
+        <article class="timeline-detail" id="timelineDetail" aria-live="polite">
+          <p class="detail-year">2000</p>
+          <h3>A long affordability story begins</h3>
+          <p>
+            The timeline starts at 2000 to show that the crisis is not a single
+            bad year. It is a multi-decade pattern of rising demand, uneven
+            supply, and unequal access to stable housing.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="neighbourhoods" class="section map-section">
+      <div class="section-heading" data-reveal>
+        <p class="kicker">Neighbourhood affordability</p>
+        <h2>Affordability pressure is city-wide, but it does not feel the same everywhere.</h2>
+      </div>
+
+      <div class="map-layout">
+        <div class="toronto-map" aria-label="Stylized Toronto neighbourhood affordability map" data-reveal>
+          <button type="button" class="map-zone zone-north" data-neighbourhood="northYork"><span>North York</span></button>
+          <button type="button" class="map-zone zone-west" data-neighbourhood="etobicoke"><span>Etobicoke</span></button>
+          <button type="button" class="map-zone zone-midtown" data-neighbourhood="midtown"><span>Midtown</span></button>
+          <button type="button" class="map-zone zone-east" data-neighbourhood="scarborough"><span>Scarborough</span></button>
+          <button type="button" class="map-zone zone-core active" data-neighbourhood="downtown"><span>Downtown</span></button>
+          <button type="button" class="map-zone zone-water" data-neighbourhood="waterfront"><span>Waterfront</span></button>
+        </div>
+
+        <aside class="map-panel" id="neighbourhoodPanel" aria-live="polite" data-reveal>
+          <p class="panel-label">Selected area</p>
+          <h3 id="neighbourhoodName">Downtown Core</h3>
+          <div class="pressure-meter" aria-label="Affordability pressure score">
+            <span id="pressureFill"></span>
+          </div>
+          <p class="pressure-score"><strong id="pressureScore">96</strong>/100 pressure index</p>
+          <p id="neighbourhoodSummary">
+            Highest competition for small units, strongest access to jobs and transit,
+            and the greatest risk that service workers are priced away from the core.
+          </p>
+          <ul id="neighbourhoodNeeds" class="need-list">
+            <li>Deeply affordable rentals near transit</li>
+            <li>Protections against renoviction and displacement</li>
+            <li>More family-sized non-market homes</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section solutions-section">
+      <div class="section-heading" data-reveal>
+        <p class="kicker">What justice requires</p>
+        <h2>Toronto needs supply, protection, and public purpose at the same time.</h2>
+      </div>
+      <div class="solutions-grid">
+        <article data-reveal>
+          <h3>Build non-market housing</h3>
+          <p>Co-op, public, supportive, and non-profit rental homes keep affordability attached to people, not only to market cycles.</p>
+        </article>
+        <article data-reveal>
+          <h3>Preserve existing rentals</h3>
+          <p>Protecting older purpose-built rentals can prevent displacement faster and often cheaper than replacing lost affordability later.</p>
+        </article>
+        <article data-reveal>
+          <h3>Legalize complete communities</h3>
+          <p>More mid-rise, multiplex, and family-sized homes near transit can reduce exclusionary pressure when paired with affordability rules.</p>
+        </article>
+        <article data-reveal>
+          <h3>Measure who benefits</h3>
+          <p>Targets should track affordability depth, location, accessibility, tenure security, and outcomes for equity-deserving groups.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section conclusion-section" data-reveal>
+      <p class="kicker">Conclusion</p>
+      <h2>Housing should be treated as civic infrastructure.</h2>
+      <p>
+        A fair city cannot depend on displacement as its pressure valve. Toronto's
+        affordability crisis calls for homes people can actually afford, stronger
+        renter protection, public land used for public benefit, and policy that
+        names the unequal burden carried by renters, low-income households,
+        newcomers, racialized communities, students, workers, seniors, and families.
+      </p>
+    </section>
+
+    <section id="references" class="section references-section">
+      <div class="section-heading" data-reveal>
+        <p class="kicker">APA-style references</p>
+        <h2>Sources used for the facts and benchmarks.</h2>
+      </div>
+      <ol class="reference-list" data-reveal>
+        <li>Canada Mortgage and Housing Corporation. (2025). <em>2025 rental market report</em>. <a href="https://www.cmhc-schl.gc.ca/professionals/housing-markets-data-and-research/market-reports/rental-market-reports-major-centres?ap=a1-p1">https://www.cmhc-schl.gc.ca/professionals/housing-markets-data-and-research/market-reports/rental-market-reports-major-centres</a></li>
+        <li>City of Toronto. (2026). <em>Housing: Affordable rental housing and mid-range rents</em>. <a href="https://www.toronto.ca/city-government/planning-development/official-plan-guidelines/housing/">https://www.toronto.ca/city-government/planning-development/official-plan-guidelines/housing/</a></li>
+        <li>City of Toronto. (2024). <em>Toronto housing data book</em>. <a href="https://www.toronto.ca/city-government/data-research-maps/toronto-housing-data-hub/toronto-housing-data-book/">https://www.toronto.ca/city-government/data-research-maps/toronto-housing-data-hub/toronto-housing-data-book/</a></li>
+        <li>City of Toronto. (n.d.). <em>Housing occupancy trends</em>. <a href="https://www.toronto.ca/city-government/data-research-maps/research-reports/planning-development/housing-occupancy-trends/">https://www.toronto.ca/city-government/data-research-maps/research-reports/planning-development/housing-occupancy-trends/</a></li>
+        <li>City of Toronto. (n.d.). <em>HousingTO 2020-2030 action plan</em>. <a href="https://www.toronto.ca/community-people/housing-shelter/building-affordable-homes/housingto-2020-2030-action-plan/">https://www.toronto.ca/community-people/housing-shelter/building-affordable-homes/housingto-2020-2030-action-plan/</a></li>
+        <li>City of Toronto. (2023, May 10). <em>Toronto City Council approves housing pledge to facilitate 285,000 new homes by 2031</em>. <a href="https://www.toronto.ca/news/toronto-city-council-approves-housing-pledge-to-facilitate-285000-new-homes-by-2031/">https://www.toronto.ca/news/toronto-city-council-approves-housing-pledge-to-facilitate-285000-new-homes-by-2031/</a></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Static HTML, CSS, and JavaScript. Built for GitHub Pages and Google Sites embedding.</p>
+    <a href="#top">Back to top</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
