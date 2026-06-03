@@ -1,26 +1,26 @@
 # Housing Affordability in Toronto
 
-Static school project website for **Unaffordable Housing in Toronto**. The site presents research, bias assessment, secondary data, primary survey data, statistical analysis, policy proposals, limitations, and APA-style references.
+Static interactive school project website for **Unaffordable Housing in Toronto**.
 
-The project is intentionally simple and GitHub Pages friendly:
+The site now presents the project as a compact data story instead of a text-heavy report. It includes:
+
+- a first-screen metric summary
+- concise research accordions
+- interactive secondary-data charts
+- an interactive survey explorer built from the attached 125-response survey export
+- housing situation, response-theme, and correlation views
+- policy proposals, limitations, and APA-style references
+
+## Open Locally
+
+Open `index.html` directly in a browser. Keep these files in the same root folder:
 
 - `index.html`
 - `styles.css`
 - `script.js`
 - `README.md`
-- no React
-- no Vite
-- no backend
-- no Node setup required
-- no API keys
 
-## Open Locally
-
-1. Download or clone the repository.
-2. Open `index.html` directly in a browser.
-3. Keep `index.html`, `styles.css`, and `script.js` in the same root folder.
-
-The website uses relative paths only, so it works from a local file path and from GitHub Pages.
+No React, Vite, backend, API keys, or chart libraries are required.
 
 ## GitHub Pages Deployment
 
@@ -48,24 +48,16 @@ https://350285449.github.io/housing_affordability_toronto_site/
 
 ## Embed in Google Sites
 
-1. Copy the GitHub Pages URL:
-
-```text
-https://350285449.github.io/housing_affordability_toronto_site/
-```
-
-2. Open your Google Sites page.
-3. Choose **Insert -> Embed**.
-4. Choose **By URL**.
-5. Paste the GitHub Pages URL.
-6. Insert the embed and resize it to fit the page.
-
 Use the GitHub Pages URL, not the local `index.html` file.
+
+1. Open your Google Sites page.
+2. Choose **Insert -> Embed**.
+3. Choose **By URL**.
+4. Paste the GitHub Pages URL.
+5. Insert the embed and resize it to fit the page.
 
 ## Technical Notes
 
 - All charts are generated with local JavaScript in `script.js`.
-- No external chart library is required.
-- If JavaScript is disabled, the chart areas include fallback text.
-- The Toronto skyline is made with CSS, so there are no image files to upload.
-- Source links are included in the references section of the page.
+- The survey explorer uses summarized data from the attached Google Forms export.
+- The site uses relative paths only, so it works from a local file path and from GitHub Pages.
