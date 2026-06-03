@@ -1,130 +1,76 @@
-const rentBenchmarks = {
-  studio: { label: "Studio", rent: 1127 },
-  oneBed: { label: "1-bedroom", rent: 1426 },
-  twoBed: { label: "2-bedroom", rent: 2055 },
-  threeBed: { label: "3-bedroom", rent: 2351 }
-};
+const shelterUseData = [
+  { label: "2018", value: 8000, note: "about 8,000" },
+  { label: "2020", value: 9000, note: "approx. 9,000" },
+  { label: "2022", value: 9800, note: "approx. 9,800" },
+  { label: "2023", value: 10500, note: "over 10,500" }
+];
 
-const timelineData = {
-  2000: {
-    title: "A long affordability story begins",
-    text: "The timeline starts at 2000 to show that the crisis is not a single bad year. It is a multi-decade pattern of rising demand, uneven supply, and unequal access to stable housing."
-  },
-  2010: {
-    title: "The City sets a decade-long housing plan",
-    text: "Toronto endorsed the Housing Opportunities Toronto Action Plan 2010-2020 as a road map for public, non-profit, and private housing action."
-  },
-  2016: {
-    title: "Unaffordability was already widespread",
-    text: "City occupancy reporting says 36.6% of all Toronto households spent 30% or more of income on shelter costs in 2016."
-  },
+const rbcAffordabilityData = [
+  { label: "Long-run detached average", value: 50.4, note: "50.4%" },
+  { label: "All home types, Q3 2024", value: 43.3, note: "43.3%" },
+  { label: "Detached homes, Q3 2024", value: 75.1, note: "75.1%" },
+  { label: "All ownership, text summary", value: 75, note: "75%+" }
+];
+
+const evidenceTimeline = {
   2018: {
-    title: "Public land became part of the solution",
-    text: "Housing Now was approved to use City-owned sites for mixed-income, transit-oriented housing, later folded into the broader Toronto Builds approach."
-  },
-  2019: {
-    title: "HousingTO reframes housing as dignity",
-    text: "HousingTO 2020-2030 was created after public consultation and recognizes housing as essential to dignity, well-being, and inclusive communities."
+    title: "2018",
+    text: "Project data begins with roughly 8,000 people in shelter or street needs data, showing that homelessness was already a major issue before the most recent affordability shock."
   },
   2021: {
-    title: "A renter city becomes clearer",
-    text: "The Toronto Housing Data Book reports that 48% of households were renters in 2021, and almost a third of all households struggled with housing affordability."
+    title: "2021",
+    text: "Census and housing data show that renters face greater affordability pressure than owners, and that shelter-cost-to-income ratios are a key way to measure the burden."
   },
   2023: {
-    title: "Toronto pledges a major supply target",
-    text: "City Council adopted a pledge to facilitate 285,000 new homes by 2031, a target described as a 23% increase in housing supply within 10 years."
+    title: "2023",
+    text: "The project text identifies shelter use rising above 10,500, which supports the claim that homelessness grew while affordable housing remained limited."
   },
-  2025: {
-    title: "Vacancy improved, but affordability stayed low",
-    text: "CMHC reported Toronto's purpose-built apartment vacancy rate hit 3% in 2025, while noting that affordability remained low in expensive markets."
-  },
-  2026: {
-    title: "The benchmark is still hard to meet",
-    text: "The City's 2026 affordable rent limits are $1,127 for a studio, $1,426 for a one-bedroom, $2,055 for a two-bedroom, and $2,351 for a three-bedroom."
+  2024: {
+    title: "2024",
+    text: "The City of Toronto's 2024 Street Needs Assessment estimated 15,418 people experiencing homelessness, including people indoors and outdoors."
   }
 };
 
-const neighbourhoodData = {
-  downtown: {
-    name: "Downtown Core",
-    score: 96,
-    summary: "Highest competition for small units, strongest access to jobs and transit, and the greatest risk that service workers are priced away from the core.",
-    needs: [
-      "Deeply affordable rentals near transit",
-      "Protections against renoviction and displacement",
-      "More family-sized non-market homes"
-    ]
+const surveyStats = [
+  {
+    id: "second-properties",
+    label: "Support tax on second properties",
+    parents: { mean: 6.75, median: 7, mode: 8, range: 9, iqr: 2 },
+    students: { mean: 5.11, median: 5, mode: 4, range: 9, iqr: 2 }
   },
-  waterfront: {
-    name: "Waterfront",
-    score: 88,
-    summary: "New housing supply is visible, but many units are small and expensive. Public land decisions matter because the area is close to jobs, parks, and transit.",
-    needs: [
-      "Affordable units in mixed-income developments",
-      "Accessible homes for seniors and disabled residents",
-      "Family-sized rentals close to services"
-    ]
+  {
+    id: "government-tax",
+    label: "Support government tax for affordable housing",
+    parents: { mean: 7.59, median: 8, mode: 9, range: 9, iqr: 2 },
+    students: { mean: 6.67, median: 7, mode: 6, range: 9, iqr: 1.75 }
   },
-  midtown: {
-    name: "Midtown",
-    score: 84,
-    summary: "Transit access and redevelopment make Midtown attractive, but that same demand can push out lower-income renters in older buildings.",
-    needs: [
-      "Rental replacement during redevelopment",
-      "Mid-rise homes with affordability requirements",
-      "Tenant support during construction disruption"
-    ]
+  {
+    id: "ownership-limits",
+    label: "Support limits on ownership",
+    parents: { mean: 6.2, median: 6, mode: 7, range: 8, iqr: 2 },
+    students: { mean: 5.11, median: 4.5, mode: 4, range: 9, iqr: 1.75 }
   },
-  northYork: {
-    name: "North York",
-    score: 79,
-    summary: "Large apartment clusters and transit nodes create opportunity, but affordability depends on preserving existing rentals and adding non-market homes.",
-    needs: [
-      "Preservation of older purpose-built rentals",
-      "More community housing near rapid transit",
-      "Local services that reduce household costs"
-    ]
+  {
+    id: "prioritize-affordable",
+    label: "Support prioritizing affordable housing",
+    parents: { mean: 6.88, median: 7, mode: 7, range: 9, iqr: 2 },
+    students: { mean: 5.83, median: 5.5, mode: 4, range: 9, iqr: 3 }
   },
-  etobicoke: {
-    name: "Etobicoke",
-    score: 73,
-    summary: "Housing pressure is shaped by long commutes, limited rapid transit in some areas, and a need for more rental options beyond the core.",
-    needs: [
-      "Affordable housing near transit expansion",
-      "Gentle density in low-rise areas",
-      "Family-sized rentals and co-ops"
-    ]
+  {
+    id: "rent-control",
+    label: "Support rent control",
+    parents: { mean: 6.86, median: 7, mode: 7, range: 9, iqr: 2 },
+    students: { mean: 6.11, median: 6, mode: 5, range: 9, iqr: 2.75 }
   },
-  scarborough: {
-    name: "Scarborough",
-    score: 76,
-    summary: "Scarborough is essential to Toronto's affordability story because many working families depend on rental homes, transit access, and local services here.",
-    needs: [
-      "Transit-connected affordable rentals",
-      "Protection for tower apartment communities",
-      "Investment in complete neighbourhood infrastructure"
-    ]
+  {
+    id: "affordability-rating",
+    label: "Housing affordable rating",
+    parents: { mean: 4.24, median: 4, mode: 4, range: 9, iqr: 2 },
+    students: { mean: 2.83, median: 3, mode: 3, range: 4, iqr: 1 }
   }
-};
+];
 
-const chartData = Object.values(rentBenchmarks).map((item) => ({
-  ...item,
-  incomeNeeded: Math.round((item.rent * 12) / 0.3 / 10) * 10
-}));
-
-const moneyFormatter = new Intl.NumberFormat("en-CA", {
-  style: "currency",
-  currency: "CAD",
-  maximumFractionDigits: 0
-});
-
-function formatMoney(value) {
-  return moneyFormatter.format(value);
-}
-
-function clampNumber(value, min, max) {
-  return Math.min(Math.max(Number(value) || min, min), max);
-}
+const numberFormatter = new Intl.NumberFormat("en-CA");
 
 function initRevealAnimations() {
   const revealItems = document.querySelectorAll("[data-reveal]");
@@ -141,161 +87,53 @@ function initRevealAnimations() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.16 });
+  }, { threshold: 0.15 });
 
   revealItems.forEach((item) => observer.observe(item));
 }
 
-function initCalculator() {
-  const incomeRange = document.getElementById("incomeRange");
-  const incomeInput = document.getElementById("incomeInput");
-  const rentRange = document.getElementById("rentRange");
-  const rentInput = document.getElementById("rentInput");
-  const unitType = document.getElementById("unitType");
-  const useBenchmark = document.getElementById("useBenchmark");
+function createBarChart(containerId, data, options = {}) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
 
-  const incomeLabel = document.getElementById("incomeLabel");
-  const rentLabel = document.getElementById("rentLabel");
-  const ratioRing = document.getElementById("ratioRing");
-  const ratioValue = document.getElementById("ratioValue");
-  const statusPill = document.getElementById("statusPill");
-  const resultTitle = document.getElementById("resultTitle");
-  const affordableMonthly = document.getElementById("affordableMonthly");
-  const monthlyGap = document.getElementById("monthlyGap");
-  const incomeNeeded = document.getElementById("incomeNeeded");
-  const benchmarkValue = document.getElementById("benchmarkValue");
+  const maxValue = Math.max(...data.map((item) => item.value));
+  container.innerHTML = "";
 
-  if (!incomeRange || !rentRange || !unitType) return;
+  data.forEach((item) => {
+    const row = document.createElement("div");
+    row.className = "bar-row";
+    row.style.setProperty("--bar-width", `${(item.value / maxValue) * 100}%`);
 
-  // Keep paired range and number inputs synchronized without needing a framework.
-  function syncInputs(source, target, min, max) {
-    const value = clampNumber(source.value, min, max);
-    source.value = value;
-    target.value = value;
-  }
+    const valueText = options.percent
+      ? item.note
+      : item.note || numberFormatter.format(item.value);
 
-  function updateCalculator() {
-    const income = clampNumber(incomeInput.value, 15000, 250000);
-    const rent = clampNumber(rentInput.value, 500, 5500);
-    const selectedBenchmark = rentBenchmarks[unitType.value].rent;
-    const affordableLimit = income * 0.3 / 12;
-    const ratio = income > 0 ? (rent * 12 / income) * 100 : 0;
-    const gap = rent - affordableLimit;
-    const needed = rent * 12 / 0.3;
-    const ringDegrees = Math.min(ratio, 100) * 3.6;
+    row.innerHTML = `
+      <strong>${item.label}</strong>
+      <span class="bar-track" aria-hidden="true"><span class="bar-fill"></span></span>
+      <span class="bar-value">${valueText}</span>
+    `;
 
-    incomeLabel.textContent = formatMoney(income);
-    rentLabel.textContent = formatMoney(rent);
-    ratioRing.style.setProperty("--ratio-deg", `${ringDegrees}deg`);
-    ratioValue.textContent = `${Math.round(ratio)}%`;
-    affordableMonthly.textContent = formatMoney(affordableLimit);
-    monthlyGap.textContent = gap >= 0 ? `${formatMoney(gap)} over` : `${formatMoney(Math.abs(gap))} under`;
-    incomeNeeded.textContent = formatMoney(needed);
-    benchmarkValue.textContent = formatMoney(selectedBenchmark);
-
-    statusPill.classList.remove("good", "severe");
-
-    if (ratio <= 30) {
-      statusPill.textContent = "Affordable";
-      statusPill.classList.add("good");
-      resultTitle.textContent = "This rent fits within the common affordability threshold.";
-    } else if (ratio <= 50) {
-      statusPill.textContent = "Stretched";
-      resultTitle.textContent = "This rent is above the common affordability threshold.";
-    } else {
-      statusPill.textContent = "Severely unaffordable";
-      statusPill.classList.add("severe");
-      resultTitle.textContent = "This rent would create severe affordability pressure.";
-    }
-  }
-
-  incomeRange.addEventListener("input", () => {
-    syncInputs(incomeRange, incomeInput, 15000, 250000);
-    updateCalculator();
+    container.appendChild(row);
+    requestAnimationFrame(() => row.classList.add("is-ready"));
   });
-
-  incomeInput.addEventListener("input", () => {
-    syncInputs(incomeInput, incomeRange, 15000, 250000);
-    updateCalculator();
-  });
-
-  rentRange.addEventListener("input", () => {
-    syncInputs(rentRange, rentInput, 500, 5500);
-    updateCalculator();
-  });
-
-  rentInput.addEventListener("input", () => {
-    syncInputs(rentInput, rentRange, 500, 5500);
-    updateCalculator();
-  });
-
-  unitType.addEventListener("change", updateCalculator);
-
-  useBenchmark.addEventListener("click", () => {
-    const benchmarkRent = rentBenchmarks[unitType.value].rent;
-    rentInput.value = benchmarkRent;
-    rentRange.value = benchmarkRent;
-    updateCalculator();
-  });
-
-  updateCalculator();
 }
 
-function initChart() {
-  const chart = document.getElementById("affordabilityChart");
-  const buttons = document.querySelectorAll("[data-chart-mode]");
-  if (!chart) return;
-
-  function renderChart(mode) {
-    const isIncomeMode = mode === "income";
-    const maxValue = Math.max(...chartData.map((item) => isIncomeMode ? item.incomeNeeded : item.rent));
-    chart.innerHTML = "";
-
-    chartData.forEach((item) => {
-      const value = isIncomeMode ? item.incomeNeeded : item.rent;
-      const row = document.createElement("div");
-      row.className = "chart-row";
-      row.style.setProperty("--bar-width", `${(value / maxValue) * 100}%`);
-      row.innerHTML = `
-        <strong>${item.label}</strong>
-        <span class="chart-track" aria-hidden="true"><span class="chart-fill"></span></span>
-        <span class="chart-value">${formatMoney(value)}</span>
-      `;
-      chart.appendChild(row);
-      requestAnimationFrame(() => row.classList.add("is-ready"));
-    });
-  }
-
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      buttons.forEach((item) => {
-        item.classList.remove("active");
-        item.setAttribute("aria-pressed", "false");
-      });
-      button.classList.add("active");
-      button.setAttribute("aria-pressed", "true");
-      renderChart(button.dataset.chartMode);
-    });
-  });
-
-  renderChart("rent");
-}
-
-function initTimeline() {
-  const buttons = document.querySelectorAll("[data-year]");
+function initEvidenceTimeline() {
+  const buttons = document.querySelectorAll("[data-evidence-year]");
   const detail = document.getElementById("timelineDetail");
-  if (!detail) return;
+  if (!buttons.length || !detail) return;
 
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
-      const year = button.dataset.year;
-      const item = timelineData[year];
+      const year = button.dataset.evidenceYear;
+      const item = evidenceTimeline[year];
       if (!item) return;
 
       buttons.forEach((timelineButton) => timelineButton.classList.remove("active"));
       button.classList.add("active");
       detail.innerHTML = `
-        <p class="detail-year">${year}</p>
+        <p class="eyebrow">Evidence point</p>
         <h3>${item.title}</h3>
         <p>${item.text}</p>
       `;
@@ -303,43 +141,143 @@ function initTimeline() {
   });
 }
 
-function initNeighbourhoodMap() {
-  const zones = document.querySelectorAll("[data-neighbourhood]");
-  const name = document.getElementById("neighbourhoodName");
-  const score = document.getElementById("pressureScore");
-  const fill = document.getElementById("pressureFill");
-  const summary = document.getElementById("neighbourhoodSummary");
-  const needs = document.getElementById("neighbourhoodNeeds");
+function renderMeanComparison() {
+  const container = document.getElementById("meanChart");
+  if (!container) return;
 
-  if (!zones.length || !name || !score || !fill || !summary || !needs) return;
+  container.innerHTML = "";
 
-  // The pressure index is an interpretive classroom data layer, not an official rent table.
-  function renderNeighbourhood(key) {
-    const item = neighbourhoodData[key];
-    if (!item) return;
-
-    name.textContent = item.name;
-    score.textContent = item.score;
-    fill.style.width = `${item.score}%`;
-    summary.textContent = item.summary;
-    needs.innerHTML = item.needs.map((need) => `<li>${need}</li>`).join("");
-  }
-
-  zones.forEach((zone) => {
-    zone.addEventListener("click", () => {
-      zones.forEach((item) => item.classList.remove("active"));
-      zone.classList.add("active");
-      renderNeighbourhood(zone.dataset.neighbourhood);
-    });
+  // Mean bars compare parents and students on the same 1-10 Likert scale.
+  surveyStats.forEach((measure) => {
+    const row = document.createElement("div");
+    row.className = "comparison-row";
+    row.innerHTML = `
+      <span class="comparison-label">${measure.label}</span>
+      <span class="paired-bars">
+        <span class="paired-bar">
+          <span>Parents</span>
+          <i style="--bar-width: ${measure.parents.mean * 10}%; --bar-color: var(--cyan)"></i>
+          <strong>${measure.parents.mean.toFixed(2)}</strong>
+        </span>
+        <span class="paired-bar">
+          <span>Students</span>
+          <i style="--bar-width: ${measure.students.mean * 10}%; --bar-color: var(--gold)"></i>
+          <strong>${measure.students.mean.toFixed(2)}</strong>
+        </span>
+      </span>
+    `;
+    container.appendChild(row);
   });
+}
 
-  renderNeighbourhood("downtown");
+function renderStatCards() {
+  const container = document.getElementById("statCards");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  surveyStats.forEach((measure) => {
+    const card = document.createElement("article");
+    card.innerHTML = `
+      <div class="stats-card-header">
+        <h3 class="measure-name">${measure.label}</h3>
+      </div>
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th>Group</th>
+            <th>Mean</th>
+            <th>Median</th>
+            <th>Mode</th>
+            <th>Range</th>
+            <th>IQR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Parents</td>
+            <td>${measure.parents.mean.toFixed(2)}</td>
+            <td>${measure.parents.median}</td>
+            <td>${measure.parents.mode}</td>
+            <td>${measure.parents.range}</td>
+            <td>${measure.parents.iqr}</td>
+          </tr>
+          <tr>
+            <td>Students</td>
+            <td>${measure.students.mean.toFixed(2)}</td>
+            <td>${measure.students.median}</td>
+            <td>${measure.students.mode}</td>
+            <td>${measure.students.range}</td>
+            <td>${measure.students.iqr}</td>
+          </tr>
+        </tbody>
+      </table>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function getBoxPosition(stats) {
+  // The survey gives range and IQR, not raw responses. This creates an
+  // illustrative box plot from the reported summary statistics on a 1-10 scale.
+  const min = Math.max(1, Math.min(stats.median - stats.range / 2, 10 - stats.range));
+  const max = Math.min(10, min + stats.range);
+  const q1 = Math.max(min, stats.median - stats.iqr / 2);
+  const q3 = Math.min(max, stats.median + stats.iqr / 2);
+
+  const toPercent = (value) => `${((value - 1) / 9) * 100}%`;
+
+  return {
+    min: toPercent(min),
+    max: toPercent(max),
+    q1: toPercent(q1),
+    q3: toPercent(q3),
+    median: toPercent(stats.median)
+  };
+}
+
+function renderBoxPlots() {
+  const container = document.getElementById("boxPlotChart");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  surveyStats.forEach((measure) => {
+    const parentBox = getBoxPosition(measure.parents);
+    const studentBox = getBoxPosition(measure.students);
+    const group = document.createElement("div");
+    group.className = "boxplot-group";
+    group.innerHTML = `
+      <span class="boxplot-title">${measure.label}</span>
+      <span class="boxplot-stack">
+        <span class="boxplot-row">
+          <span>Parents</span>
+          <span class="boxplot-track" style="--min: ${parentBox.min}; --max: ${parentBox.max}; --q1: ${parentBox.q1}; --q3: ${parentBox.q3}; --median: ${parentBox.median}; --box-color: var(--cyan)">
+            <i class="boxplot-range"></i>
+            <i class="boxplot-iqr"></i>
+            <i class="boxplot-median"></i>
+          </span>
+        </span>
+        <span class="boxplot-row">
+          <span>Students</span>
+          <span class="boxplot-track" style="--min: ${studentBox.min}; --max: ${studentBox.max}; --q1: ${studentBox.q1}; --q3: ${studentBox.q3}; --median: ${studentBox.median}; --box-color: var(--gold)">
+            <i class="boxplot-range"></i>
+            <i class="boxplot-iqr"></i>
+            <i class="boxplot-median"></i>
+          </span>
+        </span>
+      </span>
+    `;
+    container.appendChild(group);
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   initRevealAnimations();
-  initCalculator();
-  initChart();
-  initTimeline();
-  initNeighbourhoodMap();
+  createBarChart("shelterChart", shelterUseData);
+  createBarChart("rbcChart", rbcAffordabilityData, { percent: true });
+  initEvidenceTimeline();
+  renderMeanComparison();
+  renderStatCards();
+  renderBoxPlots();
 });
