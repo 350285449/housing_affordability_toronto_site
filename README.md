@@ -1,15 +1,16 @@
 # Housing Affordability in Toronto
 
-Static interactive school project website for **Unaffordable Housing in Toronto**.
+Static interactive data story about **housing affordability and homelessness in Toronto**.
 
-The site now presents the project as a compact data story instead of a text-heavy report. It includes:
+The site presents the project as a direct, visual argument instead of a text-heavy report. It includes:
 
-- a first-screen metric summary
-- concise research accordions
-- interactive secondary-data charts
-- an interactive survey explorer built from the attached 125-response survey export
-- housing situation, response-theme, and correlation views
-- policy proposals, limitations, and APA-style references
+- a plain-language explanation of the link between housing pressure and homelessness
+- a live rent-burden simulator
+- interactive city-level evidence and timeline views
+- a survey explorer built from the attached 125-response survey export
+- housing situation, response-theme, group-comparison, and correlation views
+- an interactive policy-priority builder
+- limitations and an APA-style source drawer
 
 ## Open Locally
 

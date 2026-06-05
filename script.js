@@ -161,6 +161,57 @@ const state = {
 };
 
 const numberFormatter = new Intl.NumberFormat("en-CA");
+const currencyFormatter = new Intl.NumberFormat("en-CA", {
+  style: "currency",
+  currency: "CAD",
+  maximumFractionDigits: 0
+});
+
+const pathwayContent = {
+  cost: {
+    number: "01",
+    eyebrow: "Pressure begins here",
+    title: "When housing takes too much income, there is less room for food, transit, savings, and emergencies.",
+    text: "This does not mean every rent-burdened household becomes homeless. It means more households are exposed when something goes wrong."
+  },
+  risk: {
+    number: "02",
+    eyebrow: "The safety net shrinks",
+    title: "A job loss, illness, rent increase, or family change can quickly become a housing crisis.",
+    text: "Households with little money left after housing have fewer ways to absorb a setback or find another home nearby."
+  },
+  shelter: {
+    number: "03",
+    eyebrow: "People get stuck",
+    title: "When affordable homes are scarce, people can spend longer in shelters even when they are ready to leave.",
+    text: "That slows shelter exits, fills available spaces, and makes the whole homelessness response system less effective."
+  },
+  response: {
+    number: "04",
+    eyebrow: "A practical response",
+    title: "Affordable housing prevents some housing loss. Supportive housing helps people with more complex needs.",
+    text: "The strongest response combines lower-cost homes, renter protection, income support, and services rather than relying on one policy."
+  }
+};
+
+const policyContent = {
+  build: {
+    label: "affordable supply",
+    text: "More below-market homes create realistic places for low-income households and people leaving shelters to live."
+  },
+  support: {
+    label: "supportive housing",
+    text: "Supportive housing adds health and social services for people who need help staying housed."
+  },
+  protect: {
+    label: "renter stability",
+    text: "Renter protection can prevent sudden displacement while longer-term housing is built."
+  },
+  tax: {
+    label: "dedicated revenue",
+    text: "Taxes on additional properties can fund housing action and reduce incentives for speculation."
+  }
+};
 
 function initRevealAnimations() {
   const revealItems = document.querySelectorAll("[data-reveal]");
@@ -180,6 +231,189 @@ function initRevealAnimations() {
   }, { threshold: 0.12 });
 
   revealItems.forEach((item) => observer.observe(item));
+}
+
+function initScrollProgress() {
+  const progress = document.getElementById("scrollProgress");
+  if (!progress) return;
+
+  const update = () => {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const percent = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+    progress.style.width = `${Math.min(100, Math.max(0, percent))}%`;
+  };
+
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+}
+
+function initActiveNavigation() {
+  const links = [...document.querySelectorAll(".nav-links a")];
+  if (!links.length || !("IntersectionObserver" in window)) return;
+
+  const sections = links
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      links.forEach((link) => {
+        link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`);
+      });
+    });
+  }, { rootMargin: "-35% 0px -55%", threshold: 0 });
+
+  sections.forEach((section) => observer.observe(section));
+}
+
+function initPathway() {
+  const buttons = document.querySelectorAll("[data-pathway]");
+  const detail = document.getElementById("pathwayDetail");
+  if (!buttons.length || !detail) return;
+
+  buttons.forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.classList.contains("is-active")));
+    button.addEventListener("click", () => {
+      const content = pathwayContent[button.dataset.pathway];
+      if (!content) return;
+
+      buttons.forEach((item) => {
+        const active = item === button;
+        item.classList.toggle("is-active", active);
+        item.setAttribute("aria-pressed", String(active));
+        const icon = item.querySelector("i");
+        if (icon) icon.textContent = active ? "−" : "+";
+      });
+
+      detail.innerHTML = `
+        <span class="detail-number">${content.number}</span>
+        <p class="eyebrow">${content.eyebrow}</p>
+        <h3>${content.title}</h3>
+        <p>${content.text}</p>
+      `;
+    });
+  });
+}
+
+function initAffordabilityCalculator() {
+  const income = document.getElementById("incomeRange");
+  const housing = document.getElementById("housingRange");
+  const incomeOutput = document.getElementById("incomeOutput");
+  const housingOutput = document.getElementById("housingOutput");
+  const percentOutput = document.getElementById("burdenPercent");
+  const status = document.getElementById("burdenStatus");
+  const message = document.getElementById("burdenMessage");
+  const moneyLeft = document.getElementById("moneyLeft");
+  const benchmarkCost = document.getElementById("benchmarkCost");
+  const result = document.getElementById("burdenResult");
+  const ring = result?.querySelector(".burden-ring");
+
+  if (!income || !housing || !result || !ring) return;
+
+  const render = () => {
+    const incomeValue = Number(income.value);
+    const housingValue = Number(housing.value);
+    const burden = Math.round((housingValue / incomeValue) * 100);
+    const ringValue = Math.min(burden, 100);
+
+    incomeOutput.textContent = currencyFormatter.format(incomeValue);
+    housingOutput.textContent = currencyFormatter.format(housingValue);
+    percentOutput.textContent = `${burden}%`;
+    moneyLeft.textContent = currencyFormatter.format(incomeValue - housingValue);
+    benchmarkCost.textContent = currencyFormatter.format(incomeValue * 0.3);
+    ring.style.setProperty("--burden", `${ringValue}%`);
+    result.classList.remove("is-manageable", "is-stretched");
+
+    if (burden <= 30) {
+      status.textContent = "Within the benchmark";
+      message.textContent = "Housing takes 30% or less of this household's monthly income.";
+      result.classList.add("is-manageable");
+    } else if (burden <= 40) {
+      status.textContent = "Housing-cost burdened";
+      message.textContent = "This household is above the common 30% affordability benchmark.";
+      result.classList.add("is-stretched");
+    } else {
+      status.textContent = "Severely unaffordable";
+      message.textContent = "This household would be well above the 30% affordability benchmark.";
+    }
+  };
+
+  income.addEventListener("input", render);
+  housing.addEventListener("input", render);
+  document.querySelectorAll("[data-scenario]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const scenarios = {
+        starter: { income: 4200, housing: 2000 },
+        family: { income: 7200, housing: 3400 },
+        reset: { income: 5000, housing: 2200 }
+      };
+      const scenario = scenarios[button.dataset.scenario];
+      if (!scenario) return;
+      income.value = scenario.income;
+      housing.value = scenario.housing;
+      render();
+    });
+  });
+
+  render();
+}
+
+function initPolicyBuilder() {
+  const buttons = [...document.querySelectorAll("[data-policy]")];
+  const count = document.getElementById("policyCount");
+  const meter = document.getElementById("policyMeter");
+  const title = document.getElementById("policyOutputTitle");
+  const text = document.getElementById("policyOutputText");
+  const reset = document.getElementById("policyReset");
+  const selected = new Set();
+  if (!buttons.length || !count || !meter || !title || !text) return;
+
+  const render = () => {
+    count.textContent = selected.size;
+    meter.style.width = `${(selected.size / buttons.length) * 100}%`;
+    buttons.forEach((button) => {
+      const active = selected.has(button.dataset.policy);
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-pressed", String(active));
+      const icon = button.querySelector("i");
+      if (icon) icon.textContent = active ? "✓" : "+";
+    });
+
+    if (selected.size === 0) {
+      title.textContent = "Start by choosing a priority.";
+      text.textContent = "A strong housing response needs to prevent housing loss, create affordable exits from shelters, and support people with complex needs.";
+      return;
+    }
+
+    if (selected.size === buttons.length) {
+      title.textContent = "You built a balanced housing response.";
+      text.textContent = "Your mix addresses supply, prevention, support, and funding. That matches the evidence that homelessness has several connected causes.";
+      return;
+    }
+
+    const choices = [...selected].map((id) => policyContent[id]);
+    title.textContent = `Your plan prioritizes ${choices.map((item) => item.label).join(" + ")}.`;
+    text.textContent = choices.map((item) => item.text).join(" ");
+  };
+
+  buttons.forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.classList.contains("is-active")));
+    button.addEventListener("click", () => {
+      const id = button.dataset.policy;
+      if (selected.has(id)) selected.delete(id);
+      else selected.add(id);
+      render();
+    });
+  });
+
+  reset?.addEventListener("click", () => {
+    selected.clear();
+    render();
+  });
+
+  render();
 }
 
 function getQuestion(id) {
@@ -430,12 +664,14 @@ function renderThemeButtons() {
 function renderThemeDetail() {
   const title = document.getElementById("themeTitle");
   const detail = document.getElementById("themeDetail");
+  const count = document.getElementById("themeCount");
   const theme = responseThemes.find((item) => item.id === state.theme);
   if (!title || !detail || !theme) return;
 
   setActiveButton("[data-theme]", "theme", state.theme);
   title.textContent = theme.label;
   detail.textContent = theme.detail;
+  if (count) count.textContent = theme.count;
 }
 
 function renderSecondaryChart() {
@@ -473,7 +709,9 @@ function renderLineSvg(container, values) {
       <polyline points="${points}" fill="none" stroke="var(--red)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
       ${values.map((item, index) => `
         <g>
-          <circle cx="${x(index)}" cy="${y(item.value)}" r="7" fill="var(--teal)" stroke="white" stroke-width="3" />
+          <circle class="chart-point" cx="${x(index)}" cy="${y(item.value)}" r="7" fill="var(--red)" stroke="white" stroke-width="3">
+            <title>${item.label}: ${numberFormatter.format(item.value)} people</title>
+          </circle>
           <text class="svg-label" x="${x(index)}" y="${height - 24}" text-anchor="middle">${item.label}</text>
           <text class="svg-label" x="${x(index)}" y="${y(item.value) - 14}" text-anchor="middle">${numberFormatter.format(item.value)}</text>
         </g>
@@ -498,7 +736,9 @@ function renderBarSvg(container, values) {
         const y = height - padding.bottom - barHeight;
         return `
           <g>
-            <rect x="${x}" y="${y}" width="${barWidth}" height="${barHeight}" rx="8" fill="${index === values.length - 1 ? "var(--red)" : "var(--teal)"}" />
+            <rect class="chart-point" x="${x}" y="${y}" width="${barWidth}" height="${barHeight}" rx="8" fill="${index === values.length - 1 ? "var(--red)" : "var(--cyan)"}">
+              <title>${item.label}: ${item.value}% of median household income</title>
+            </rect>
             <text class="svg-label" x="${x + barWidth / 2}" y="${y - 12}" text-anchor="middle">${item.value}%</text>
             <text class="svg-label" x="${x + barWidth / 2}" y="${height - 42}" text-anchor="middle">${item.label}</text>
           </g>
@@ -514,15 +754,20 @@ function initEvidenceTimeline() {
   if (!buttons.length || !detail) return;
 
   buttons.forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.classList.contains("is-active")));
     button.addEventListener("click", () => {
       const item = evidenceTimeline[button.dataset.evidenceYear];
       if (!item) return;
 
-      buttons.forEach((timelineButton) => timelineButton.classList.remove("is-active"));
+      buttons.forEach((timelineButton) => {
+        timelineButton.classList.remove("is-active");
+        timelineButton.setAttribute("aria-pressed", "false");
+      });
       button.classList.add("is-active");
+      button.setAttribute("aria-pressed", "true");
       detail.innerHTML = `
-        <p class="eyebrow">Evidence point</p>
-        <h3>${item.title}</h3>
+        <p class="eyebrow">What changed</p>
+        <h3>${item.title}: ${button.querySelector("strong")?.textContent || "Evidence point"}</h3>
         <p>${item.text}</p>
       `;
     });
@@ -595,6 +840,11 @@ function bindControls() {
 
 document.addEventListener("DOMContentLoaded", () => {
   initRevealAnimations();
+  initScrollProgress();
+  initActiveNavigation();
+  initPathway();
+  initAffordabilityCalculator();
+  initPolicyBuilder();
   createQuestionButtons();
   renderThemeButtons();
   bindControls();
