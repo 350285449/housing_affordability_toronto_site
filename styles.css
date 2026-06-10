@@ -231,12 +231,34 @@ li {
 }
 
 .hero-section {
+  position: relative;
   padding-top: 4.2rem;
   background:
+    linear-gradient(90deg, rgba(247, 248, 244, 0.86), rgba(247, 248, 244, 0.64) 48%, rgba(247, 248, 244, 0.76)),
+    linear-gradient(180deg, rgba(247, 248, 244, 0.18), rgba(247, 248, 244, 0.94) 84%),
+    url("assets/toronto-sunset-bg.png") center top / cover no-repeat,
     linear-gradient(90deg, rgba(22, 140, 126, 0.10) 0 1px, transparent 1px 100%),
     linear-gradient(rgba(22, 140, 126, 0.08) 0 1px, transparent 1px 100%),
     var(--bg);
+  background-size: auto, auto, cover, 44px 44px, 44px 44px, auto;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(22, 140, 126, 0.10) 0 1px, transparent 1px 100%),
+    linear-gradient(rgba(22, 140, 126, 0.08) 0 1px, transparent 1px 100%);
   background-size: 44px 44px;
+  opacity: 0.55;
+}
+
+.hero-section > .section-inner {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-grid {
