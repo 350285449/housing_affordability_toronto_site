@@ -3,329 +3,415 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Interactive school data story about housing affordability, homelessness, and policy support in Toronto." />
-  <title>Toronto Housing Affordability Data Story</title>
+  <meta name="description" content="Part F call-to-action media product using math to show why Toronto housing affordability is a social justice issue." />
+  <title>Toronto Housing Affordability | Call for Action</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
 
-  <header id="top" class="hero">
+  <header class="site-header" id="top">
     <nav class="top-nav" aria-label="Primary navigation">
-      <a class="brand" href="#top" aria-label="Toronto Housing Justice home">
-        <span class="brand-mark">TO</span>
-        <span>Housing Justice</span>
+      <a class="brand" href="#top" aria-label="Toronto Housing Affordability home">
+        <span class="brand-mark">HCI</span>
+        <span>Housing Affordability</span>
       </a>
       <div class="nav-links">
-        <a href="#story">Story</a>
-        <a href="#evidence">Evidence</a>
-        <a href="#explorer">Explorer</a>
-        <a href="#policy">Policy</a>
-        <a href="#references">Sources</a>
+        <a href="#issue">Issue</a>
+        <a href="#math-proof">Math Proof</a>
+        <a href="#survey">Survey Stats</a>
+        <a href="#correlation">Two-Variable</a>
+        <a href="#action">Action</a>
+        <a href="#sources">Sources</a>
       </div>
     </nav>
-
-    <section class="hero-layout" aria-labelledby="hero-title">
-      <div class="hero-copy" data-reveal>
-        <p class="kicker">Toronto housing affordability</p>
-        <h1 id="hero-title">A data story about housing pressure and homelessness.</h1>
-        <p class="hero-lead">
-          The project now centers on the evidence: Toronto's housing crisis, 125 HCI survey responses, and the policies people support most.
-        </p>
-        <div class="hero-actions">
-          <a class="button primary" href="#explorer">Explore survey data</a>
-          <a class="button secondary" href="#evidence">See city evidence</a>
-        </div>
-      </div>
-
-      <figure class="city-visual" aria-label="Stylized Toronto skyline with an affordability pressure meter.">
-        <span class="sky sky-a" aria-hidden="true"></span>
-        <span class="sky sky-b" aria-hidden="true"></span>
-        <span class="cn-needle" aria-hidden="true"></span>
-        <span class="cn-deck" aria-hidden="true"></span>
-        <span class="cn-tower" aria-hidden="true"></span>
-        <span class="tower block-one" aria-hidden="true"></span>
-        <span class="tower block-two" aria-hidden="true"></span>
-        <span class="tower block-three" aria-hidden="true"></span>
-        <span class="tower block-four" aria-hidden="true"></span>
-        <span class="streetcar" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="lake" aria-hidden="true"></span>
-        <figcaption>
-          <span>Affordability rating</span>
-          <strong>3.76 / 10</strong>
-        </figcaption>
-      </figure>
-    </section>
-
-    <section class="hero-metrics" aria-label="Project highlights">
-      <article data-reveal>
-        <span class="metric-value">125</span>
-        <span class="metric-label">valid HCI survey responses</span>
-      </article>
-      <article data-reveal>
-        <span class="metric-value">64%</span>
-        <span class="metric-label">of respondents are renting</span>
-      </article>
-      <article data-reveal>
-        <span class="metric-value">15,418</span>
-        <span class="metric-label">people estimated homeless in Toronto's 2024 Street Needs Assessment</span>
-      </article>
-    </section>
   </header>
 
   <main id="main">
-    <section id="story" class="section story-section">
-      <div class="section-heading" data-reveal>
-        <p class="kicker">Research frame</p>
-        <h2>Less report, clearer argument.</h2>
-        <p class="section-lead">
-          The question stays focused: how does affordable housing availability affect homelessness in Toronto?
-        </p>
-      </div>
-
-      <div class="argument-grid">
-        <article class="argument-card" data-reveal>
-          <p class="eyebrow">Research question</p>
-          <h3>How does affordable housing availability impact homelessness rates in Toronto?</h3>
-          <p>Housing is not the only cause of homelessness, but without affordable units and support services, people have fewer ways to leave shelters or avoid losing housing.</p>
-        </article>
-        <article class="argument-card accent" data-reveal>
-          <p class="eyebrow">Stance</p>
-          <h3>Increasing affordable and supportive housing should reduce homelessness.</h3>
-          <p>The evidence points toward a practical social justice claim: stable housing improves health, school, work, safety, and family stability.</p>
-        </article>
-      </div>
-
-      <div class="variable-strip" data-reveal>
-        <article>
-          <span>Dependent variable</span>
-          <strong>Homelessness rates</strong>
-        </article>
-        <article>
-          <span>Key drivers</span>
-          <strong>Affordable units, rent levels, policy, income, mental health supports</strong>
-        </article>
-      </div>
-    </section>
-
-    <section id="research" class="section research-section dark-band">
-      <div class="section-heading" data-reveal>
-        <p class="kicker">Part B</p>
-        <h2>Research with the long text tucked away.</h2>
-      </div>
-
-      <div class="research-accordion" data-reveal>
-        <details open>
-          <summary>
-            <span>City of Toronto</span>
-            <strong>2024 Street Needs Assessment</strong>
-          </summary>
-          <p>The City estimated 15,418 people experiencing homelessness in 2024. The count supports the claim that homelessness is large and urgent, but point-in-time methods can miss hidden homelessness.</p>
-        </details>
-        <details>
-          <summary>
-            <span>Statistics Canada</span>
-            <strong>Housing affordability measures</strong>
-          </summary>
-          <p>StatsCan's shelter-cost-to-income approach shows why renters are vulnerable when housing consumes too much income. The limitation is that national or older data can understate current Toronto pressure.</p>
-        </details>
-        <details>
-          <summary>
-            <span>Homeless Hub</span>
-            <strong>Supportive housing research</strong>
-          </summary>
-          <p>Supportive housing combines stable homes with services. That matters because some people need health, addiction, income, or settlement support alongside housing.</p>
-        </details>
-      </div>
-    </section>
-
-    <section id="evidence" class="section evidence-section">
-      <div class="section-heading" data-reveal>
-        <p class="kicker">Part C</p>
-        <h2>City evidence at a glance.</h2>
-        <p class="section-lead">Switch between homelessness counts and housing-cost pressure.</p>
-      </div>
-
-      <div class="chart-shell evidence-shell" data-reveal>
-        <div class="tool-header">
-          <div>
-            <p class="eyebrow">Secondary data</p>
-            <h3 id="secondaryTitle">Toronto homelessness estimates</h3>
-          </div>
-          <div class="segmented-control" aria-label="Secondary data chart">
-            <button type="button" class="is-active" data-secondary-chart="homelessness">Homelessness</button>
-            <button type="button" data-secondary-chart="affordability">Affordability</button>
+    <section class="hero-section section-band">
+      <div class="section-inner hero-grid">
+        <div class="hero-copy" data-reveal>
+          <p class="kicker">Part F: Call for Action</p>
+          <h1>Toronto housing affordability is a social justice issue.</h1>
+          <p class="lead">
+            Safe housing is a basic need. The math shows an unfair distribution of housing stability, income pressure, and access to support.
+          </p>
+          <div class="hero-actions" aria-label="Page shortcuts">
+            <a class="button primary" href="#math-proof">See the math</a>
+            <a class="button secondary" href="#action">Take action</a>
           </div>
         </div>
-        <div id="secondaryChart" class="secondary-chart" role="img" aria-label="Interactive secondary data chart"></div>
-        <p id="secondaryNote" class="data-note"></p>
+
+        <div class="hero-visual" data-reveal aria-label="Data visual showing homelessness counts rising from 2018 to 2024.">
+          <div class="visual-topline">
+            <span>Toronto Street Needs Assessment</span>
+            <strong>2018 to 2024</strong>
+          </div>
+          <div class="city-bars" aria-hidden="true">
+            <span class="bar-2018"><i></i><b>8,715</b><small>2018</small></span>
+            <span class="bar-2021"><i></i><b>7,347</b><small>2021</small></span>
+            <span class="bar-2024"><i></i><b>15,418</b><small>2024</small></span>
+          </div>
+          <p class="visual-caption">2024 count was about 77% higher than 2018.</p>
+        </div>
       </div>
 
-      <div class="timeline-grid" data-reveal>
-        <button type="button" class="timeline-item is-active" data-evidence-year="2018">
-          <span>2018</span>
-          <strong>Baseline pressure</strong>
-        </button>
-        <button type="button" class="timeline-item" data-evidence-year="2021">
-          <span>2021</span>
-          <strong>Census affordability</strong>
-        </button>
-        <button type="button" class="timeline-item" data-evidence-year="2023">
-          <span>2023</span>
-          <strong>Shelter use rises</strong>
-        </button>
-        <button type="button" class="timeline-item" data-evidence-year="2024">
-          <span>2024</span>
-          <strong>Street Needs count</strong>
-        </button>
-        <article id="timelineDetail" class="timeline-detail">
-          <p class="eyebrow">Evidence point</p>
-          <h3>2018</h3>
-          <p>Project data begins with roughly 8,000 people in shelter or street-needs data, showing the issue was already serious before the latest affordability shock.</p>
+      <div class="section-inner stat-strip" aria-label="Project highlights">
+        <article data-reveal>
+          <span>Primary data</span>
+          <strong>69</strong>
+          <p>survey responses: 51 parents and 18 students.</p>
+        </article>
+        <article data-reveal>
+          <span>Affordability rating</span>
+          <strong>3.87/10</strong>
+          <p>weighted mean from the HCI survey.</p>
+        </article>
+        <article data-reveal>
+          <span>City evidence</span>
+          <strong>15,418</strong>
+          <p>people estimated homeless in Toronto on Oct. 23, 2024.</p>
+        </article>
+        <article data-reveal>
+          <span>Inequity ratio</span>
+          <strong>3x</strong>
+          <p>Indigenous people are overrepresented in Toronto homelessness data.</p>
         </article>
       </div>
     </section>
 
-    <section id="explorer" class="section explorer-section dark-band">
-      <div class="section-heading" data-reveal>
-        <p class="kicker">Parts D and E</p>
-        <h2>Interactive survey explorer.</h2>
-        <p class="section-lead">
-          Built from the attached survey export: 98 parents, 27 students, and 125 valid responses.
-        </p>
+    <section class="section-band" id="issue">
+      <div class="section-inner">
+        <div class="section-heading" data-reveal>
+          <p class="kicker">Issue and stance</p>
+          <h2>The shortage of affordable housing affects stability, health, school, and work.</h2>
+          <p class="lead">
+            My research question is: How does the availability of affordable housing impact homelessness rates in Toronto?
+          </p>
+        </div>
+
+        <div class="two-column">
+          <article class="info-card" data-reveal>
+            <h3>Brief Summary</h3>
+            <p>
+              Affordable housing in Toronto has become harder to access because rent, ownership costs, and living expenses have risen faster than many people's income. This affects students, working families, newcomers, low-income households, and people already experiencing homelessness.
+            </p>
+            <p>
+              I take the stance that increasing affordable and supportive housing will reduce homelessness and housing stress.
+            </p>
+          </article>
+
+          <article class="info-card accent-card" data-reveal>
+            <h3>Why It Is Social Justice</h3>
+            <p>
+              Housing is connected to safety, food security, mental health, education, and employment. When housing is distributed mainly by wealth, people with less money or fewer supports face higher risk.
+            </p>
+            <p>
+              The issue is not only individual choice. The data shows patterns by income, identity, and access to services.
+            </p>
+          </article>
+        </div>
+
+        <div class="variable-grid" data-reveal>
+          <article>
+            <span>Dependent variable</span>
+            <strong>Homelessness rate</strong>
+            <p>Measured using shelter occupancy, Street Needs Assessment counts, or homelessness estimates.</p>
+          </article>
+          <article>
+            <span>Independent variables</span>
+            <strong>Affordable units, rent, policy, supports, economy</strong>
+            <p>These factors can change housing stability and shelter demand.</p>
+          </article>
+        </div>
       </div>
+    </section>
 
-      <div class="dashboard-grid">
-        <section class="chart-shell survey-tool" data-reveal aria-labelledby="surveyExplorerTitle">
-          <div class="tool-header">
+    <section class="section-band tinted" id="math-proof">
+      <div class="section-inner">
+        <div class="section-heading" data-reveal>
+          <p class="kicker">Math proof of unfairness</p>
+          <h2>Fair access would not produce these gaps.</h2>
+          <p class="lead">
+            This section uses one-variable statistics, ratios, percentages, and a simple probability experiment to show why the issue is unfair.
+          </p>
+        </div>
+
+        <div class="proof-grid">
+          <article class="proof-panel" data-reveal>
+            <span class="proof-number">77%</span>
+            <h3>Homelessness estimate increase</h3>
+            <p>
+              Toronto's Street Needs Assessment estimated 8,715 people experiencing homelessness in 2018 and 15,418 in 2024.
+            </p>
+            <p class="formula">(15,418 - 8,715) / 8,715 = 0.769</p>
+          </article>
+
+          <article class="proof-panel" data-reveal>
+            <span class="proof-number">2.5x</span>
+            <h3>Ownership cost pressure</h3>
+            <p>
+              RBC reported that Toronto ownership costs required 75.1% of median household income in Q3 2024.
+            </p>
+            <p class="formula">75.1% / 30% affordability benchmark = 2.50</p>
+          </article>
+
+          <article class="proof-panel" data-reveal>
+            <span class="proof-number">3x</span>
+            <h3>Overrepresentation</h3>
+            <p>
+              The City reports Indigenous people are about 3% of Toronto's population but 9% of people experiencing homelessness.
+            </p>
+            <p class="formula">9% / 3% = 3</p>
+          </article>
+        </div>
+
+        <div class="experiment-layout" data-reveal>
+          <div>
+            <p class="kicker">Probability experiment</p>
+            <h3>Draw 100 people from a fair system versus Toronto's homelessness data.</h3>
+            <p>
+              If representation matched the city population, about 3 out of 100 people in the homelessness count would be Indigenous. The reported share is about 9 out of 100. The extra 6 out of 100 shows an unfair concentration of harm.
+            </p>
+            <p>
+              This does not mean identity causes homelessness. It shows that systems such as housing, income, health care, and colonial history do not affect everyone equally.
+            </p>
+          </div>
+          <div class="token-compare" aria-label="Probability comparison for expected and actual representation">
+            <div class="token-row">
+              <span>Expected if fair</span>
+              <div class="token-grid" id="expectedTokens"></div>
+              <strong>3 / 100</strong>
+            </div>
+            <div class="token-row">
+              <span>Reported share</span>
+              <div class="token-grid" id="actualTokens"></div>
+              <strong>9 / 100</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band" id="secondary">
+      <div class="section-inner">
+        <div class="section-heading" data-reveal>
+          <p class="kicker">Secondary data</p>
+          <h2>City and national data support the survey findings.</h2>
+          <p class="lead">
+            The city data shows homelessness counts and hidden-homelessness limits. The housing data shows why the 30% affordability benchmark matters.
+          </p>
+        </div>
+
+        <div class="secondary-grid">
+          <section class="chart-panel" data-reveal aria-labelledby="cityChartTitle">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">City of Toronto</p>
+                <h3 id="cityChartTitle">Estimated homelessness count</h3>
+              </div>
+              <span class="tag">2018, 2021, 2024, 2025</span>
+            </div>
+            <div id="homelessnessChart" class="bar-chart" role="img" aria-label="Bar chart of Toronto homelessness estimates."></div>
+            <p class="chart-note">
+              The latest City page reports 12,196 people in the 2025 point-in-time count, lower than 2024 but still about 40% higher than 2018.
+            </p>
+          </section>
+
+          <section class="chart-panel" data-reveal aria-labelledby="costChartTitle">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Affordability threshold</p>
+                <h3 id="costChartTitle">Housing cost burden calculator</h3>
+              </div>
+              <span class="tag">30% benchmark</span>
+            </div>
+            <div class="range-group">
+              <label for="incomeRange">
+                <span>Monthly income</span>
+                <output id="incomeOutput">$5,000</output>
+              </label>
+              <input id="incomeRange" type="range" min="1800" max="10000" step="100" value="5000" />
+            </div>
+            <div class="range-group">
+              <label for="housingRange">
+                <span>Monthly housing cost</span>
+                <output id="housingOutput">$2,200</output>
+              </label>
+              <input id="housingRange" type="range" min="600" max="6000" step="100" value="2200" />
+            </div>
+            <div class="burden-result" id="burdenResult">
+              <strong id="burdenPercent">44%</strong>
+              <span id="burdenStatus">Severely unaffordable</span>
+              <p id="burdenMessage">This household is above the common 30% affordability benchmark.</p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band dark" id="survey">
+      <div class="section-inner">
+        <div class="section-heading" data-reveal>
+          <p class="kicker">Part E: One-variable statistics</p>
+          <h2>Parents and students both rated housing affordability low.</h2>
+          <p class="lead">
+            Survey population: 51 parents and 18 students from the HCI community. Ratings use a 1 to 10 scale.
+          </p>
+        </div>
+
+        <section class="chart-panel dark-panel" data-reveal aria-labelledby="surveyChartTitle">
+          <div class="panel-heading">
             <div>
-              <p class="eyebrow">Survey question</p>
-              <h3 id="surveyExplorerTitle">Explore response patterns</h3>
+              <p class="eyebrow">Interactive survey chart</p>
+              <h3 id="surveyChartTitle">Compare means by question</h3>
             </div>
-            <div class="segmented-control compact" aria-label="Respondent group">
-              <button type="button" class="is-active" data-group="all">All</button>
-              <button type="button" data-group="Parent">Parents</button>
-              <button type="button" data-group="Student">Students</button>
-            </div>
+            <div class="segmented-control" id="questionTabs" aria-label="Survey question tabs"></div>
           </div>
-
-          <div id="questionButtons" class="question-buttons" aria-label="Survey questions"></div>
-
-          <div class="tool-row">
-            <div class="segmented-control" aria-label="Chart view">
-              <button type="button" class="is-active" data-chart-mode="distribution">Distribution</button>
-              <button type="button" data-chart-mode="means">Means</button>
-              <button type="button" data-chart-mode="box">Range</button>
-            </div>
-            <p id="activeQuestionLabel" class="active-label"></p>
-          </div>
-
-          <div id="surveyChart" class="survey-chart" role="img" aria-label="Interactive survey chart"></div>
-          <div id="surveyReadout" class="readout-grid" aria-live="polite"></div>
+          <div id="meanChart" class="mean-chart" role="img" aria-label="Mean ratings for parents and students."></div>
+          <div id="statsTable" class="stats-table-wrap"></div>
         </section>
 
-        <aside class="insight-column" data-reveal>
-          <section class="mini-panel">
-            <p class="eyebrow">Housing situation</p>
-            <h3 id="housingTitle">All respondents</h3>
-            <div id="housingChart" class="housing-chart" aria-label="Housing situation chart"></div>
-          </section>
-
-          <section class="mini-panel">
-            <p class="eyebrow">Short answer themes</p>
-            <h3 id="themeTitle">Rent burden dominates</h3>
-            <div id="themeButtons" class="theme-buttons" aria-label="Response themes"></div>
-            <p id="themeDetail" class="theme-detail"></p>
-          </section>
-        </aside>
-      </div>
-    </section>
-
-    <section id="correlation" class="section correlation-section">
-      <div class="section-heading" data-reveal>
-        <p class="kicker">Two-variable statistics</p>
-        <h2>Policy opinions moved together.</h2>
-        <p class="section-lead">Correlation does not prove causation, but it shows which policy opinions tend to rise together.</p>
-      </div>
-
-      <div class="chart-shell correlation-tool" data-reveal>
-        <div class="tool-header">
-          <div>
-            <p class="eyebrow">Correlation explorer</p>
-            <h3 id="correlationTitle">Second-property tax and ownership limits</h3>
-          </div>
-          <div class="segmented-control" aria-label="Correlation pair">
-            <button type="button" class="is-active" data-correlation-pair="pair1">Pair 1</button>
-            <button type="button" data-correlation-pair="pair2">Pair 2</button>
-          </div>
-        </div>
-        <div class="correlation-body">
-          <div class="segmented-control vertical" aria-label="Correlation group">
-            <button type="button" class="is-active" data-correlation-group="all">All</button>
-            <button type="button" data-correlation-group="Parent">Parents</button>
-            <button type="button" data-correlation-group="Student">Students</button>
-          </div>
-          <div id="correlationChart" class="correlation-chart" role="img" aria-label="Correlation strength chart"></div>
-          <div id="correlationStats" class="correlation-stats"></div>
+        <div class="interpretation-grid">
+          <article class="info-card dark-card" data-reveal>
+            <h3>Notice</h3>
+            <p>
+              Parents gave higher average support than students for every policy. Both groups rated housing affordability much lower than policy support.
+            </p>
+          </article>
+          <article class="info-card dark-card" data-reveal>
+            <h3>Conclusion Supporting My Stance</h3>
+            <p>
+              Low affordability ratings support my claim that the community sees housing as a serious problem. Strong policy support shows people want public action, not only individual solutions.
+            </p>
+          </article>
+          <article class="info-card dark-card" data-reveal>
+            <h3>Limitation</h3>
+            <p>
+              The survey used convenience sampling, so it may not represent all students, parents, or Toronto residents.
+            </p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="policy" class="section policy-section">
-      <div class="section-heading" data-reveal>
-        <p class="kicker">Policy proposals</p>
-        <h2>Two actions match the evidence.</h2>
-      </div>
+    <section class="section-band" id="correlation">
+      <div class="section-inner">
+        <div class="section-heading" data-reveal>
+          <p class="kicker">Part E: Two-variable statistics</p>
+          <h2>Policy opinions moved together.</h2>
+          <p class="lead">
+            Strong positive correlations show that people who support one housing intervention often support related interventions.
+          </p>
+        </div>
 
-      <div class="policy-grid">
-        <article class="policy-card" data-reveal>
-          <span class="policy-letter">A</span>
-          <h3>Tax second and additional residential properties more heavily.</h3>
-          <p>Use the revenue for affordable and supportive housing. This directly connects housing wealth to housing need.</p>
-        </article>
-        <article class="policy-card" data-reveal>
-          <span class="policy-letter">B</span>
-          <h3>Prioritize affordable developments over luxury projects.</h3>
-          <p>Build near transit, schools, and services so low-income households can stay connected to opportunity.</p>
-        </article>
-      </div>
-
-      <div class="limitations-grid">
-        <article data-reveal>
-          <p class="eyebrow">Limitations</p>
-          <p>Homelessness is also affected by income, migration, mental health, addiction, inflation, and data gaps. Shelter counts miss some hidden homelessness.</p>
-        </article>
-        <article data-reveal>
-          <p class="eyebrow">Response</p>
-          <p>Those limits do not erase the central pattern: when housing is unaffordable, prevention and shelter exits become harder.</p>
-        </article>
+        <section class="chart-panel" data-reveal aria-labelledby="correlationTitle">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Correlation explorer</p>
+              <h3 id="correlationTitle">Tax second properties vs ownership limits</h3>
+            </div>
+            <div class="segmented-control" aria-label="Correlation pair">
+              <button type="button" class="is-active" data-pair="speculation">Speculation</button>
+              <button type="button" data-pair="funding">Funding</button>
+            </div>
+          </div>
+          <div id="correlationChart" class="correlation-grid"></div>
+          <p class="chart-note">
+            Correlation does not prove causation. It shows association: respondents with higher support for one policy tended to rate the paired policy higher too.
+          </p>
+        </section>
       </div>
     </section>
 
-    <section id="conclusion" class="section conclusion-section dark-band" data-reveal>
-      <p class="kicker">Conclusion</p>
-      <h2>Stable housing is the base layer of a fair city.</h2>
-      <p>Toronto needs more affordable units, stronger renter protection, supportive housing, and policies that reduce speculation.</p>
+    <section class="section-band tinted" id="action">
+      <div class="section-inner">
+        <div class="section-heading" data-reveal>
+          <p class="kicker">Call for action</p>
+          <h2>Change starts with policy, community pressure, and practical support.</h2>
+          <p class="lead">
+            The typical person may not be able to build housing alone, but they can help shift attention, resources, and political pressure toward housing as a right.
+          </p>
+        </div>
+
+        <div class="action-grid">
+          <article class="action-card" data-reveal>
+            <span>01</span>
+            <h3>Share the math</h3>
+            <p>Use the 77% increase, 3x overrepresentation ratio, and 30% affordability benchmark to explain why this is unfair.</p>
+          </article>
+          <article class="action-card" data-reveal>
+            <span>02</span>
+            <h3>Support affordable developments</h3>
+            <p>Speak up for affordable and supportive housing near transit, schools, libraries, and community services.</p>
+          </article>
+          <article class="action-card" data-reveal>
+            <span>03</span>
+            <h3>Contact representatives</h3>
+            <p>Ask city and provincial leaders to fund affordable housing, strengthen tenant protections, and reduce speculative ownership.</p>
+          </article>
+          <article class="action-card" data-reveal>
+            <span>04</span>
+            <h3>Support local services</h3>
+            <p>Volunteer, donate, or advocate for shelters, food programs, legal clinics, and mental health supports.</p>
+          </article>
+        </div>
+
+        <div class="policy-callout" data-reveal>
+          <h3>My two policy proposals</h3>
+          <ol>
+            <li>Tax second and additional residential properties more heavily, then use the revenue for affordable and supportive housing.</li>
+            <li>Prioritize affordable housing developments over luxury housing, especially near transit, schools, and community services.</li>
+          </ol>
+        </div>
+      </div>
     </section>
 
-    <section id="references" class="section references-section">
-      <div class="section-heading" data-reveal>
-        <p class="kicker">References</p>
-        <h2>APA-style sources</h2>
+    <section class="section-band" id="opposition">
+      <div class="section-inner">
+        <div class="section-heading" data-reveal>
+          <p class="kicker">Balanced conclusion</p>
+          <h2>The data supports action, but it has limits.</h2>
+        </div>
+
+        <div class="two-column">
+          <article class="info-card" data-reveal>
+            <h3>Opposition View</h3>
+            <p>
+              Some people may argue that homelessness is caused more by income, mental health, addiction, migration, or job loss than by housing supply alone. They may also worry that higher taxes on property owners could reduce rental supply.
+            </p>
+          </article>
+          <article class="info-card accent-card" data-reveal>
+            <h3>My Response</h3>
+            <p>
+              Housing is not the only factor, but it is the base. Without affordable homes, people cannot exit shelters easily, renter protection is weaker, and support services have fewer stable places to connect people to.
+            </p>
+          </article>
+        </div>
       </div>
-      <ol class="reference-list" data-reveal>
-        <li>City of Toronto. (2025). <em>Highlights of the 2024 Street Needs Assessment and advancing the City's Shelter Infrastructure Plan</em>. <a href="https://www.toronto.ca/legdocs/mmis/2025/ec/bgrd/backgroundfile-257203.pdf">https://www.toronto.ca/legdocs/mmis/2025/ec/bgrd/backgroundfile-257203.pdf</a></li>
-        <li>City of Toronto. (n.d.). <em>Street Needs Assessment</em>. <a href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/about-torontos-shelter-system/street-needs-assessment/">https://www.toronto.ca/community-people/housing-shelter/homeless-help/about-torontos-shelter-system/street-needs-assessment/</a></li>
-        <li>Homeless Hub. (2023). <em>An introduction to supportive housing</em>. <a href="https://homelesshub.ca/resource/introduction-supportive-housing/">https://homelesshub.ca/resource/introduction-supportive-housing/</a></li>
-        <li>Royal Bank of Canada Economics. (2024). <em>Housing trends and affordability: December 2024</em>. <a href="https://www.rbc.com/en/economics/wp-content/uploads/sites/4/2024/11/Housing-Affordability_2024DecNew.pdf">https://www.rbc.com/en/economics/wp-content/uploads/sites/4/2024/11/Housing-Affordability_2024DecNew.pdf</a></li>
-        <li>Statistics Canada. (2024). <em>Housing affordability in Canada, 2022</em>. <a href="https://www150.statcan.gc.ca/n1/daily-quotidien/240910/dq240910b-eng.pdf">https://www150.statcan.gc.ca/n1/daily-quotidien/240910/dq240910b-eng.pdf</a></li>
-        <li>Statistics Canada. (2021). <em>Census Profile, 2021 Census of Population: Toronto, Ontario</em>. <a href="https://www12.statcan.gc.ca/census-recensement/2021/dp-pd/prof/index.cfm?Lang=E">https://www12.statcan.gc.ca/census-recensement/2021/dp-pd/prof/index.cfm?Lang=E</a></li>
-      </ol>
+    </section>
+
+    <section class="section-band dark" id="sources">
+      <div class="section-inner">
+        <div class="section-heading" data-reveal>
+          <p class="kicker">Reliable sources</p>
+          <h2>References and data used</h2>
+        </div>
+
+        <ol class="source-list" data-reveal>
+          <li>City of Toronto. (2025). <em>2024 Street Needs Assessment - Full Report</em>. <a href="https://www.toronto.ca/wp-content/uploads/2025/07/9790-street-needs-assessment-report-2024.pdf">toronto.ca</a></li>
+          <li>City of Toronto. (2026). <em>Street Needs Assessment</em>. <a href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/about-torontos-shelter-system/street-needs-assessment/">toronto.ca</a></li>
+          <li>Royal Bank of Canada Economics. (2024). <em>Housing Trends and Affordability: December 2024</em>. <a href="https://www.rbc.com/en/economics/wp-content/uploads/sites/4/2024/11/Housing-Affordability_2024DecNew.pdf">rbc.com</a></li>
+          <li>Canada Mortgage and Housing Corporation. (2024). <em>2022 Canadian Housing Survey</em>. <a href="https://www.cmhc-schl.gc.ca/observer/2024/2022-canadian-housing-survey">cmhc-schl.gc.ca</a></li>
+          <li>Vladyslav. (2026). <em>Housing Affordability and Policy Support in the HCI Community - Survey Analysis</em>. Primary data from 69 HCI community responses.</li>
+        </ol>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>Created by Vladyslav for a school social justice research project.</p>
+    <p>Created by Vladyslav for the Agent of Change social justice project.</p>
     <a href="#top">Back to top</a>
   </footer>
 

@@ -1,16 +1,16 @@
-# Housing Affordability in Toronto
+# Toronto Housing Affordability Call for Action
 
-Static interactive data story about **housing affordability and homelessness in Toronto**.
+Static media product for Part F of the Agent of Change project. The site uses math to argue that Toronto housing affordability and homelessness are social justice issues.
 
-The site presents the project as a direct, visual argument instead of a text-heavy report. It includes:
+The page includes:
 
-- a plain-language explanation of the link between housing pressure and homelessness
-- a live rent-burden simulator
-- interactive city-level evidence and timeline views
-- a survey explorer built from the attached 125-response survey export
-- housing situation, response-theme, group-comparison, and correlation views
-- an interactive policy-priority builder
-- limitations and an APA-style source drawer
+- a clear issue summary and research question
+- one-variable statistics from the HCI survey: 69 responses, 51 parents, 18 students
+- two-variable correlation statistics from Part E
+- a probability experiment comparing expected versus reported Indigenous representation in homelessness data
+- city and housing-cost evidence from reliable sources
+- a housing-cost-burden calculator using the 30% affordability benchmark
+- limitations, an opposition view, and a direct call for action
 
 ## Open Locally
 
@@ -25,27 +25,16 @@ No React, Vite, backend, API keys, or chart libraries are required.
 
 ## GitHub Pages Deployment
 
-This repository is intended to publish from the `main` branch root folder.
+This repository can publish from the `main` branch root folder.
 
-1. Push the files to:
-
-```text
-https://github.com/350285449/housing_affordability_toronto_site
-```
-
-2. On GitHub, open the repository.
-3. Go to **Settings -> Pages**.
+1. Push the files to GitHub.
+2. Open the repository settings.
+3. Go to **Pages**.
 4. Under **Build and deployment**, choose **Deploy from a branch**.
 5. Choose:
    - Branch: `main`
    - Folder: `/ (root)`
 6. Save.
-
-The live site should publish at:
-
-```text
-https://350285449.github.io/housing_affordability_toronto_site/
-```
 
 ## Embed in Google Sites
 
@@ -59,6 +48,6 @@ Use the GitHub Pages URL, not the local `index.html` file.
 
 ## Technical Notes
 
-- All charts are generated with local JavaScript in `script.js`.
-- The survey explorer uses summarized data from the attached Google Forms export.
+- All charts and interactive elements are generated with local JavaScript in `script.js`.
+- The survey statistics come from Vladyslav's Part E analysis.
 - The site uses relative paths only, so it works from a local file path and from GitHub Pages.
