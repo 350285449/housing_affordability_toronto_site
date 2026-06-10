@@ -60,12 +60,12 @@
       <div class="section-inner stat-strip" aria-label="Project highlights">
         <article data-reveal>
           <span>Primary data</span>
-          <strong>69</strong>
-          <p>survey responses: 51 parents and 18 students.</p>
+          <strong>125</strong>
+          <p>survey responses: 98 parents and 27 students.</p>
         </article>
         <article data-reveal>
           <span>Affordability rating</span>
-          <strong>3.87/10</strong>
+          <strong>3.76/10</strong>
           <p>weighted mean from the HCI survey.</p>
         </article>
         <article data-reveal>
@@ -246,6 +246,12 @@
               <span id="burdenStatus">Severely unaffordable</span>
               <p id="burdenMessage">This household is above the common 30% affordability benchmark.</p>
             </div>
+            <aside class="benchmark-info" aria-label="Canada housing affordability benchmark">
+              <strong>Canada's 30% benchmark</strong>
+              <p>
+                Housing is commonly considered unaffordable when shelter costs are more than 30% of a household's before-tax income.
+              </p>
+            </aside>
           </section>
         </div>
       </div>
@@ -257,7 +263,7 @@
           <p class="kicker">Part E: One-variable statistics</p>
           <h2>Parents and students both rated housing affordability low.</h2>
           <p class="lead">
-            Survey population: 51 parents and 18 students from the HCI community. Ratings use a 1 to 10 scale.
+            Survey population: 98 parents and 27 students from the HCI community. Ratings use a 1 to 10 scale.
           </p>
         </div>
 
@@ -267,10 +273,21 @@
               <p class="eyebrow">Interactive survey chart</p>
               <h3 id="surveyChartTitle">Compare means by question</h3>
             </div>
-            <div class="segmented-control" id="questionTabs" aria-label="Survey question tabs"></div>
+            <div class="segmented-control question-tabs" id="questionTabs" aria-label="Survey question tabs"></div>
           </div>
+          <div id="questionInfo" class="question-info-card" hidden></div>
           <div id="meanChart" class="mean-chart" role="img" aria-label="Mean ratings for parents and students."></div>
           <div id="statsTable" class="stats-table-wrap"></div>
+          <div class="boxplot-section" aria-labelledby="boxPlotTitle">
+            <div class="mini-panel-heading">
+              <div>
+                <p class="eyebrow">Distribution</p>
+                <h4 id="boxPlotTitle">Box plots for the selected question</h4>
+              </div>
+              <span class="tag">Min, Q1, median, Q3, max</span>
+            </div>
+            <div id="boxPlot" class="box-plot" role="img" aria-label="Box plots for parents and students."></div>
+          </div>
         </section>
 
         <div class="interpretation-grid">
@@ -283,7 +300,7 @@
           <article class="info-card dark-card" data-reveal>
             <h3>Conclusion Supporting My Stance</h3>
             <p>
-              Low affordability ratings support my claim that the community sees housing as a serious problem. Strong policy support shows people want public action, not only individual solutions.
+              Low affordability ratings support my claim that the community sees housing as a serious problem. Policy ratings were strongest for public funding and affordable developments, showing support for public action.
             </p>
           </article>
           <article class="info-card dark-card" data-reveal>
@@ -315,11 +332,13 @@
             <div class="segmented-control" aria-label="Correlation pair">
               <button type="button" class="is-active" data-pair="speculation">Speculation</button>
               <button type="button" data-pair="funding">Funding</button>
+              <button type="button" data-pair="rentAffordability">Rent control</button>
             </div>
           </div>
+          <div id="scatterChart" class="scatter-plot" role="img" aria-label="Scatter plot of survey responses."></div>
           <div id="correlationChart" class="correlation-grid"></div>
           <p class="chart-note">
-            Correlation does not prove causation. It shows association: respondents with higher support for one policy tended to rate the paired policy higher too.
+            Each dot is one anonymous survey response. Dots are lightly spread out so repeated 1 to 10 ratings are visible.
           </p>
         </section>
       </div>
@@ -404,7 +423,7 @@
           <li>City of Toronto. (2026). <em>Street Needs Assessment</em>. <a href="https://www.toronto.ca/community-people/housing-shelter/homeless-help/about-torontos-shelter-system/street-needs-assessment/">toronto.ca</a></li>
           <li>Royal Bank of Canada Economics. (2024). <em>Housing Trends and Affordability: December 2024</em>. <a href="https://www.rbc.com/en/economics/wp-content/uploads/sites/4/2024/11/Housing-Affordability_2024DecNew.pdf">rbc.com</a></li>
           <li>Canada Mortgage and Housing Corporation. (2024). <em>2022 Canadian Housing Survey</em>. <a href="https://www.cmhc-schl.gc.ca/observer/2024/2022-canadian-housing-survey">cmhc-schl.gc.ca</a></li>
-          <li>Vladyslav. (2026). <em>Housing Affordability and Policy Support in the HCI Community - Survey Analysis</em>. Primary data from 69 HCI community responses.</li>
+          <li>Vladyslav. (2026). <em>Housing Affordability and Policy Support in the HCI Community - Survey Analysis</em>. Primary data from 125 HCI community responses.</li>
         </ol>
       </div>
     </section>
