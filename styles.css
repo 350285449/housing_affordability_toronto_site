@@ -234,8 +234,8 @@ li {
   position: relative;
   padding-top: 4.2rem;
   background:
-    linear-gradient(90deg, rgba(247, 248, 244, 0.66), rgba(247, 248, 244, 0.30) 48%, rgba(247, 248, 244, 0.42)),
-    linear-gradient(180deg, rgba(247, 248, 244, 0.04), rgba(247, 248, 244, 0.82) 86%),
+    linear-gradient(90deg, rgba(247, 248, 244, 0.46), rgba(247, 248, 244, 0.18) 48%, rgba(247, 248, 244, 0.26)),
+    linear-gradient(180deg, rgba(247, 248, 244, 0.02), rgba(247, 248, 244, 0.62) 86%),
     url("assets/toronto-sunset-bg.png") center top / cover no-repeat,
     linear-gradient(90deg, rgba(22, 140, 126, 0.10) 0 1px, transparent 1px 100%),
     linear-gradient(rgba(22, 140, 126, 0.08) 0 1px, transparent 1px 100%),
@@ -253,7 +253,7 @@ li {
     linear-gradient(90deg, rgba(22, 140, 126, 0.10) 0 1px, transparent 1px 100%),
     linear-gradient(rgba(22, 140, 126, 0.08) 0 1px, transparent 1px 100%);
   background-size: 44px 44px;
-  opacity: 0.38;
+  opacity: 0.24;
 }
 
 .hero-section > .section-inner {
